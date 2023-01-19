@@ -1,47 +1,53 @@
-import { useCallback, useEffect, useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 
 import * as S from "./styles";
 
-import { Input } from "../../components";
+import { Input, Dashboard } from "../../components";
 
 import { getBackground } from "../../services/Bing";
-import { getWeather } from "../../services/OpenWeather";
 import { reverseGeocode } from "../../services/OpenCage";
 
 const Home = () => {
   const [background, setBackground] = useState();
   const [coords, setCoords] = useState({});
+  const [input, setInput] = useState(null);
+  const [location, setLocation] = useState();
 
-  const setWeather = useCallback(async () => {
-    const location = await reverseGeocode(coords.lat, coords.long);
+  const reverse = useCallback(async () => {
+    const result = await reverseGeocode(coords.lat, coords.long);
+    if (result.status.code === 200) {
+      setInput(
+        `${result.data.city},${result.data.state},${result.data.country}`
+      );
+      setLocation(
+        `${result.data.city},${result.data.state},${result.data.country}`
+      );
+    }
+  }, [coords.lat, coords.long]);
 
-    const weather = await getWeather(
-      `${location.results[0].components.city},${location.results[0].components.state},${location.results[0].components.country}`
-    );
-  }, []);
-
-  const getPosition = useCallback(async () => {
+  const getPosition = useCallback(() => {
     navigator.geolocation.getCurrentPosition(function (position) {
       setCoords({
         lat: position.coords.latitude,
         long: position.coords.longitude,
       });
-      setWeather();
     });
-  }, []);
+    reverse();
+  }, [reverse]);
 
   useEffect(() => {
     getPosition();
-  }, []);
+  }, [getPosition]);
 
   async function setImage() {
     const image = await getBackground();
   }
 
   return (
-    <S.Container style={{ backgroundImage: `url(${background})` }}>
+    <S.Container>
       <S.ComponentsContainer>
-        <Input />
+        <Input input={input} setInput={setInput} setLocation={setLocation} />
+        {location && <Dashboard location={location} />}
       </S.ComponentsContainer>
     </S.Container>
   );
