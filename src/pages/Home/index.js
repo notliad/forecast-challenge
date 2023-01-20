@@ -41,13 +41,14 @@ const Home = () => {
 
   async function setImage() {
     const image = await getBackground();
+    setBackground(image);
   }
 
   return (
     <S.Container>
       <S.ComponentsContainer>
         <Input input={input} setInput={setInput} setLocation={setLocation} />
-        {location && <Dashboard location={location} />}
+        <Dashboard location={location} />
       </S.ComponentsContainer>
     </S.Container>
   );
