@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 
 import * as S from "./styles";
 
@@ -10,14 +10,15 @@ import { reverseGeocode } from "../../services/OpenCage";
 const Home = () => {
   const [background, setBackground] = useState();
   const [coords, setCoords] = useState({});
-  const [input, setInput] = useState(null);
+  const [input, setInput] = useState("");
   const [location, setLocation] = useState();
+  const inputRef = useRef();
 
   const reverse = useCallback(async () => {
     const result = await reverseGeocode(coords.lat, coords.long);
     if (result.status.code === 200) {
       setInput(
-        `${result.data.city},${result.data.state},${result.data.country}`
+        `${result.data.city}, ${result.data.state_code}, ${result.data.country}`
       );
       setLocation(
         `${result.data.city},${result.data.state},${result.data.country}`
@@ -47,8 +48,13 @@ const Home = () => {
   return (
     <S.Container>
       <S.ComponentsContainer>
-        <Input input={input} setInput={setInput} setLocation={setLocation} />
-        <Dashboard location={location} />
+        <Input
+          input={input}
+          setInput={setInput}
+          setLocation={setLocation}
+          reference={inputRef}
+        />
+        <Dashboard location={location} input={inputRef} />
       </S.ComponentsContainer>
     </S.Container>
   );
