@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Tommorrow = styled.section`
+export const Tomorrow = styled.section`
   height: 15%;
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -12,12 +12,12 @@ export const Tommorrow = styled.section`
       : "rgba(225, 183, 4, 1)"};
 `;
 
-export const TommorrowLoading = styled.section`
+export const TomorrowLoading = styled.section`
   height: 15%;
   background-color: rgba(198, 198, 198, 1);
 `;
 
-export const DayAfterTommorrow = styled.section`
+export const DayAfterTomorrow = styled.section`
   border-radius: 0 0 5px 5px;
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -29,7 +29,7 @@ export const DayAfterTommorrow = styled.section`
       : "rgba(200, 163, 4, 1)"};
 `;
 
-export const DayAfterTommorrowLoading = styled.section`
+export const DayAfterTomorrowLoading = styled.section`
   height: 15%;
   background-color: rgba(176, 176, 176, 1);
 `;
