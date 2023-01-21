@@ -1,0 +1,21 @@
+version: "3.3"
+
+services:
+  prod:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: hurbapp:latest
+    ports:
+      - 8080:80
+    volumes:
+      - ".:/app"
+  dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    image: hurbapp:latest
+    ports:
+      - 3000:3000
+    volumes:
+      - ".:/app"
