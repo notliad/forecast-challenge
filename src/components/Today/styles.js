@@ -21,6 +21,11 @@ export const Container = styled.section`
       : "rgba(250,204, 5, 0.7)"};
 `;
 
+export const ContainerLoading = styled.div`
+  background: linear-gradient(to top, #dcdcdc 0%, #c6c6c6 20%, #b0b0b0 40%);
+  height: 50%;
+`;
+
 export const IconContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -33,14 +38,20 @@ export const WeatherInfoContainer = styled.div`
 `;
 
 export const TempContainer = styled.div`
-  padding-top: 10px;
+  padding-top: 5px;
 `;
 
 export const TodayText = styled.h3`
   font-size: 25px;
-  margin-top: 10px;
+  margin-top: 5px;
   margin-bottom: 0;
   color: #fff;
+  font-family: "Nunito";
+  font-weight: 700;
+
+  @media (max-width: 830px) {
+    font-size: 18px;
+  }
 `;
 
 export const Button = styled.button`
@@ -56,49 +67,111 @@ export const WeatherText = styled.h2`
   font-size: 25px;
   margin: 10px 0;
   color: #fff;
+  font-family: "Nunito";
+  font-weight: 700;
+
+  @media (max-width: 830px) {
+    font-size: 18px;
+  }
 `;
 
 export const DetailsText = styled.h4`
   font-size: 18px;
   margin: 5px 0;
   color: #fff;
+  font-family: "Nunito";
+  font-weight: 700;
+
+  @media (max-width: 830px) {
+    font-size: 14px;
+  }
 `;
 
 export const CloudsIcon = styled(Clouds)`
   width: 250px;
   height: 250px;
   fill: "#afafaf";
+
+  @media (max-width: 830px) {
+    width: 150px;
+    height: 150px;
+  }
 `;
 export const CloudDayIcon = styled(CloudDay)`
   width: 250px;
   height: 250px;
+
+  @media (max-width: 830px) {
+    width: 150px;
+    height: 150px;
+  }
 `;
 export const CloudNightIcon = styled(CloudNight)`
   width: 250px;
   height: 250px;
+
+  @media (max-width: 830px) {
+    width: 150px;
+    height: 150px;
+  }
 `;
 export const ClearDayIcon = styled(ClearDay)`
   width: 250px;
   height: 250px;
+
+  @media (max-width: 830px) {
+    width: 150px;
+    height: 150px;
+  }
 `;
 export const ClearNightIcon = styled(ClearNight)`
   width: 250px;
   height: 250px;
+
+  @media (max-width: 830px) {
+    width: 150px;
+    height: 150px;
+  }
 `;
 export const DrizzleIcon = styled(Drizzle)`
   width: 250px;
   height: 250px;
+
+  @media (max-width: 830px) {
+    width: 150px;
+    height: 150px;
+  }
+
+  @media (max-width: 830px) {
+    width: 150px;
+    height: 150px;
+  }
 `;
 export const RainIcon = styled(Rain)`
   width: 250px;
   height: 250px;
   color: "#afafaf";
+
+  @media (max-width: 830px) {
+    width: 150px;
+    height: 150px;
+  }
 `;
 export const ThuderstormIcon = styled(Thunderstorm)`
   width: 250px;
   height: 250px;
+
+  @media (max-width: 830px) {
+    width: 150px;
+    height: 150px;
+  }
 `;
 export const SnowIcon = styled(Snow)`
   width: 250px;
   height: 250px;
+
+  @media (max-width: 830px) {
+    width: 150px;
+    height: 150px;
+  }
 `;
