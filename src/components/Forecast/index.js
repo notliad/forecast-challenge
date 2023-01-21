@@ -5,12 +5,15 @@ import { getWeatherForecast } from "../../services/OpenWeather";
 
 const Forecast = ({ location, convertUnits, setConvertUnits }) => {
   const [weatherForecast, setWeatherForecast] = useState({});
+  const [loading, setLoading] = useState(true);
 
   const getForecastInfo = useCallback(async () => {
+    setLoading(true);
     const resultWeatherForecast = await getWeatherForecast(location);
     if (resultWeatherForecast.status === "200") {
       setWeatherForecast(resultWeatherForecast.data);
     }
+    setLoading(false);
   }, [location]);
 
   const transformTemp = useCallback(
@@ -24,37 +27,37 @@ const Forecast = ({ location, convertUnits, setConvertUnits }) => {
   useEffect(() => {
     getForecastInfo();
   }, [getForecastInfo]);
-  return (
-    Object.keys(weatherForecast).length > 0 && (
-      <>
-        <S.Tommorrow temp={weatherForecast[0].main.temp}>
-          <p></p>
-          <S.Container>
-            <S.WeatherText>Amanhã</S.WeatherText>
-            <S.Button
-              onClick={() => setConvertUnits((prevstate) => !prevstate)}
-            >
-              <S.TempText>
-                {transformTemp(weatherForecast[0].main.temp)}
-              </S.TempText>
-            </S.Button>
-          </S.Container>
-        </S.Tommorrow>
-        <S.DayAfterTommorrow temp={weatherForecast[1].main.temp}>
-          <p></p>
-          <S.Container>
-            <S.WeatherText>Depois de Amanhã</S.WeatherText>
-            <S.Button
-              onClick={() => setConvertUnits((prevstate) => !prevstate)}
-            >
-              <S.TempText>
-                {transformTemp(weatherForecast[1].main.temp)}
-              </S.TempText>
-            </S.Button>
-          </S.Container>
-        </S.DayAfterTommorrow>
-      </>
-    )
+
+  return loading ? (
+    <>
+      <S.TommorrowLoading />
+      <S.DayAfterTommorrowLoading />
+    </>
+  ) : (
+    <>
+      <S.Tommorrow temp={weatherForecast[0].main.temp}>
+        <p></p>
+        <S.Container>
+          <S.WeatherText>Amanhã</S.WeatherText>
+          <S.Button onClick={() => setConvertUnits((prevstate) => !prevstate)}>
+            <S.TempText>
+              {transformTemp(weatherForecast[0].main.temp)}
+            </S.TempText>
+          </S.Button>
+        </S.Container>
+      </S.Tommorrow>
+      <S.DayAfterTommorrow temp={weatherForecast[1].main.temp}>
+        <p></p>
+        <S.Container>
+          <S.WeatherText>Depois de Amanhã</S.WeatherText>
+          <S.Button onClick={() => setConvertUnits((prevstate) => !prevstate)}>
+            <S.TempText>
+              {transformTemp(weatherForecast[1].main.temp)}
+            </S.TempText>
+          </S.Button>
+        </S.Container>
+      </S.DayAfterTommorrow>
+    </>
   );
 };
 
