@@ -9,13 +9,16 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   padding-left: 10px;
+  border-radius: 5px 5px 0 0;
 `;
 
 export const Form = styled.form`
   width: 100%;
 `;
 
-export const Input = styled.input`
+export const Input = styled.input.attrs({
+  placeholder: "Carregando sua localização...",
+})`
   max-width: 350px;
   width: 100%;
   padding: 6px 10px;
@@ -24,6 +27,11 @@ export const Input = styled.input`
   background-color: #efeae7;
   outline: none;
   font-size: 18px;
+  font-family: "Nunito";
+
+  @media (max-width: 830px) {
+    width: 200px;
+  }
 `;
 
 export const SearchIcon = styled(InputLogo)`
