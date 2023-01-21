@@ -4,11 +4,9 @@ import * as S from "./styles";
 
 import { Input, Dashboard } from "../../components";
 
-import { getBackground } from "../../services/Bing";
 import { reverseGeocode } from "../../services/OpenCage";
 
 const Home = () => {
-  const [background, setBackground] = useState();
   const [coords, setCoords] = useState({});
   const [input, setInput] = useState("");
   const [location, setLocation] = useState();
@@ -39,11 +37,6 @@ const Home = () => {
   useEffect(() => {
     getPosition();
   }, [getPosition]);
-
-  async function setImage() {
-    const image = await getBackground();
-    setBackground(image);
-  }
 
   return (
     <S.Container>
