@@ -92,7 +92,7 @@ const Today = ({ location, convertUnits, setConvertUnits, input }) => {
   }, [getTodayInfo, location]);
 
   return loading ? (
-    <S.ContainerLoading />
+    <S.ContainerLoading data-testid="container-loading" />
   ) : (
     <S.Container temp={weatherToday.main.temp}>
       <S.IconContainer>
