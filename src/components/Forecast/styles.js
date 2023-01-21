@@ -12,9 +12,13 @@ export const Tommorrow = styled.section`
       : "rgba(225, 183, 4, 1)"};
 `;
 
-export const DayAfterTommorrow = styled.section`
+export const TommorrowLoading = styled.section`
   height: 15%;
+  background-color: rgba(198, 198, 198, 1);
+`;
 
+export const DayAfterTommorrow = styled.section`
+  border-radius: 0 0 5px 5px;
   display: grid;
   grid-template-columns: 2fr 1fr;
   background-color: ${(props) =>
@@ -25,17 +29,36 @@ export const DayAfterTommorrow = styled.section`
       : "rgba(200, 163, 4, 1)"};
 `;
 
+export const DayAfterTommorrowLoading = styled.section`
+  height: 15%;
+  background-color: rgba(176, 176, 176, 1);
+`;
+
 export const Container = styled.div``;
 
 export const WeatherText = styled.h3`
-  margin-top: 10px;
+  font-size: 22px;
+  margin-top: 5px;
   margin-bottom: 0;
   color: #fff;
+  font-family: "Nunito";
+  font-weight: 700;
+
+  @media (max-width: 830px) {
+    font-size: 16px;
+  }
 `;
 
 export const TempText = styled.h2`
-  margin-top: 10px;
+  font-size: 22px;
+  margin-top: 5px;
   color: #fff;
+  font-family: "Nunito";
+  font-weight: 700;
+
+  @media (max-width: 830px) {
+    font-size: 18px;
+  }
 `;
 
 export const Button = styled.button`
