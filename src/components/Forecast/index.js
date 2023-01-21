@@ -30,12 +30,12 @@ const Forecast = ({ location, convertUnits, setConvertUnits }) => {
 
   return loading ? (
     <>
-      <S.TommorrowLoading />
-      <S.DayAfterTommorrowLoading />
+      <S.TomorrowLoading data-testid="tomorrowLoading" />
+      <S.DayAfterTomorrowLoading data-testid="dayAfterTomorrowLoading" />
     </>
   ) : (
     <>
-      <S.Tommorrow temp={weatherForecast[0].main.temp}>
+      <S.Tomorrow temp={weatherForecast[0].main.temp}>
         <p></p>
         <S.Container>
           <S.WeatherText>Amanhã</S.WeatherText>
@@ -45,8 +45,8 @@ const Forecast = ({ location, convertUnits, setConvertUnits }) => {
             </S.TempText>
           </S.Button>
         </S.Container>
-      </S.Tommorrow>
-      <S.DayAfterTommorrow temp={weatherForecast[1].main.temp}>
+      </S.Tomorrow>
+      <S.DayAfterTomorrow temp={weatherForecast[1].main.temp}>
         <p></p>
         <S.Container>
           <S.WeatherText>Depois de Amanhã</S.WeatherText>
@@ -56,7 +56,7 @@ const Forecast = ({ location, convertUnits, setConvertUnits }) => {
             </S.TempText>
           </S.Button>
         </S.Container>
-      </S.DayAfterTommorrow>
+      </S.DayAfterTomorrow>
     </>
   );
 };
