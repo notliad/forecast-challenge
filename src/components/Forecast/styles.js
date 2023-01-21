@@ -31,6 +31,7 @@ export const DayAfterTomorrow = styled.section`
 
 export const DayAfterTomorrowLoading = styled.section`
   height: 15%;
+  border-radius: 0 0 5px 5px;
   background-color: rgba(176, 176, 176, 1);
 `;
 
