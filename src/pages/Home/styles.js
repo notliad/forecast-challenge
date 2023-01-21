@@ -5,7 +5,7 @@ export const Container = styled.div`
 `;
 
 export const ComponentsContainer = styled.div`
-  margin: 0 20%;
+  margin: 0 25%;
   height: 100vh;
   align-items: center;
   justify-content: center;
