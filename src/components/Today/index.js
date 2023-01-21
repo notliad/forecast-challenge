@@ -6,6 +6,7 @@ import { reverseGeocode } from "../../services/OpenCage";
 
 const Today = ({ location, convertUnits, setConvertUnits, input }) => {
   const [weatherToday, setWeatherToday] = useState({});
+  const [loading, setLoading] = useState(true);
 
   const reverse = useCallback(
     async (lat, long) => {
@@ -13,11 +14,13 @@ const Today = ({ location, convertUnits, setConvertUnits, input }) => {
       if (result.status.code === 200) {
         input.current.value = `${result.data.city}, ${result.data.state_code}, ${result.data.country}`;
       }
+      setLoading(false);
     },
     [input]
   );
 
   const getTodayInfo = useCallback(async () => {
+    setLoading(true);
     const resultWeatherToday = await getWeatherToday(location);
     if (resultWeatherToday.status === 200) {
       setWeatherToday(resultWeatherToday.data);
@@ -88,42 +91,36 @@ const Today = ({ location, convertUnits, setConvertUnits, input }) => {
     getTodayInfo();
   }, [getTodayInfo, location]);
 
-  return (
-    Object.keys(weatherToday).length > 0 && (
-      <S.Container temp={weatherToday.main.temp}>
-        <S.IconContainer>
-          {getWeatherIcon(weatherToday.weather[0].main)}
-        </S.IconContainer>
-        <S.WeatherInfoContainer>
-          <S.TempContainer>
-            <S.TodayText>Hoje</S.TodayText>
-            <S.Button
-              onClick={() => setConvertUnits((prevstate) => !prevstate)}
-            >
-              <S.WeatherText>
-                {convertTemp(weatherToday.main.temp)}
-              </S.WeatherText>
-            </S.Button>
-          </S.TempContainer>
-          <S.DetailsContainer>
-            <S.WeatherText>
-              {getWeatherTranslated(weatherToday.weather[0].main)}
-            </S.WeatherText>
-            <S.DetailsText>
-              Vento: {getWindDirection(weatherToday.wind.deg)}{" "}
-              {convertWindSpeed(weatherToday.wind.speed)}
-            </S.DetailsText>
+  return loading ? (
+    <S.ConainerLoading />
+  ) : (
+    <S.Container temp={weatherToday.main.temp}>
+      <S.IconContainer>
+        {getWeatherIcon(weatherToday.weather[0].main)}
+      </S.IconContainer>
+      <S.WeatherInfoContainer>
+        <S.TempContainer>
+          <S.TodayText>Hoje</S.TodayText>
+          <S.Button onClick={() => setConvertUnits((prevstate) => !prevstate)}>
+            <S.WeatherText>{convertTemp(weatherToday.main.temp)}</S.WeatherText>
+          </S.Button>
+        </S.TempContainer>
+        <S.DetailsContainer>
+          <S.WeatherText>
+            {getWeatherTranslated(weatherToday.weather[0].main)}
+          </S.WeatherText>
+          <S.DetailsText>
+            Vento: {getWindDirection(weatherToday.wind.deg)}{" "}
+            {convertWindSpeed(weatherToday.wind.speed)}
+          </S.DetailsText>
 
-            <S.DetailsText>
-              Humidade: {weatherToday.main.humidity}%
-            </S.DetailsText>
-            <S.DetailsText>
-              Pressão: {convertPressure(weatherToday.main.pressure)}
-            </S.DetailsText>
-          </S.DetailsContainer>
-        </S.WeatherInfoContainer>
-      </S.Container>
-    )
+          <S.DetailsText>Humidade: {weatherToday.main.humidity}%</S.DetailsText>
+          <S.DetailsText>
+            Pressão: {convertPressure(weatherToday.main.pressure)}
+          </S.DetailsText>
+        </S.DetailsContainer>
+      </S.WeatherInfoContainer>
+    </S.Container>
   );
 };
 
