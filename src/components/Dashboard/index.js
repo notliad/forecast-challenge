@@ -7,7 +7,7 @@ const Dashboard = ({ location, input }) => {
   const [convertUnits, setConvertUnits] = useState(false);
 
   return (
-    <S.Container>
+    <S.Container data-testid="container-dashboard">
       <Today
         location={location}
         convertUnits={convertUnits}
