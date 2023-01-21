@@ -1,5 +1,7 @@
 # Hurb Technical Challenge - mini weather forecast site
 
+[[English](README.en.md) | [Portuguese](README.md)]
+
 ## Project Description
 
 Consists of a mini site where weather and climate information will be shown split between today, tomorrow and the day after tomorrow. Today's information is more detailed, showing wind speed, humidity and pressure. When the page is opened, the user's location will be loaded, showing the local weather information. The user can view the weather in other cities by entering the name in the displayed input field.

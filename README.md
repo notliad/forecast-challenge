@@ -1,5 +1,7 @@
 # Desafio técnico para Hurb - mini site de previsão do tempo
 
+[[Inglês](README.en.md) | [Português](README.md)]
+
 ## Descrição do projeto
 
 Consiste de um mini site onde as informações do tempo e clima serão mostradas divididas entre os dias de hoje, amanhã e depois de amanhã.
