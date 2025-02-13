@@ -1,6 +1,6 @@
 # Desafio técnico para Hurb - mini site de previsão do tempo
 
-[[Inglês](README.en.md) | [Português](README.md)]
+[[English](README.en.md) | [Português](README.md)]
 
 ## Descrição do projeto
 
